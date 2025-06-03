@@ -84,14 +84,14 @@ export default function BookDetail() {
     <View className="flex-1 bg-gray-50">
       <StatusBar barStyle="light-content" backgroundColor="#4A90E2" />
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="items-center">
+        <View className="items-center bg-white py-10">
           <Image 
             source={{ uri: book.coverImage }} 
-            className="w-full h-72 rounded-xl shadow-lg" 
+            className="w-48 h-64 rounded-xl shadow-lg" 
           />
         </View>
 
-        <View className="bg-white -mt-5 rounded-t-3xl px-6 pt-8 pb-24">
+        <View className="bg-white mt-2 rounded-t-3xl px-6 pt-8 pb-24">
           <View className="flex-row items-center mb-5">
             <Image 
               source={{ uri: book.authorImage }} 

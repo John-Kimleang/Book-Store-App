@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import LoginScreen from "../screens/auth/LoginScreen";
 import HomeScreen from "../screens/home/HomeScreen";
+import BookScreen from "../screens/books/BookScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +36,7 @@ const TabNavigator = () => {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="AudioBook" component={LoginScreen} />
-      <Tab.Screen name="Book" component={LoginScreen} />
+      <Tab.Screen name="Book" component={BookScreen} />
       <Tab.Screen name="Cart" component={LoginScreen} />
       <Tab.Screen name="Bookmark" component={LoginScreen} />
     </Tab.Navigator>
