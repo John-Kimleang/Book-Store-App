@@ -1,26 +1,33 @@
-import React from "react";
-import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import React from "react";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import Assets from "../../components/Assets";
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
   const newReleases = [
-    { id: 1, title: "Harry Potter", price: "€11.99", image: require("../../../assets/images/react-logo.png") },
-    { id: 2, title: "Eleanor Oliphant", price: "€9.05", image: require("../../../assets/images/react-logo.png") },
-    { id: 3, title: "The Subtle Art", price: "€20.00", image: require("../../../assets/images/react-logo.png") },
-    { id: 4, title: "The Art of War", price: "€30.00", image: require("../../../assets/images/react-logo.png") },
+    { id: 1, title: "Harry Potter", price: "€11.99", image: Assets.reactLogo },
+    { id: 2, title: "Eleanor Oliphant", price: "€9.05", image: Assets.reactLogo },
+    { id: 3, title: "The Subtle Art", price: "€20.00", image: Assets.reactLogo },
+    { id: 4, title: "The Art of War", price: "€30.00", image: Assets.reactLogo },
   ];
 
   const youMayAlsoLike = [
-    { id: 1, title: "Arena of Justice", reviews: "34 reviews", stars: 4, image: require("../../../assets/images/favicon.png") },
-    { id: 2, title: "Summer Camp", reviews: "12 reviews", stars: 3, image: require("../../../assets/images/favicon.png") },
-    { id: 3, title: "Medium Raw", reviews: "45 reviews", stars: 5, image: require("../../../assets/images/favicon.png") },
+    { id: 5, title: "Arena of Justice", reviews: "34 reviews", stars: 4, image: Assets.favicon },
+    { id: 6, title: "Summer Camp", reviews: "12 reviews", stars: 3, image: Assets.favicon },
+    { id: 7, title: "Medium Raw", reviews: "45 reviews", stars: 5, image: Assets.favicon },
   ];
+
+  //Book navigation
+  const handleBookPress = (bookId: number) => {
+    router.push({ pathname: "/screens/books/[id]", params: { id: String(bookId) } });
+  };
 
   return (
     <ScrollView className="flex-1 bg-white px-4">
       <View className="mx-4 mt-4 relative">
         <Image
-          source={require("../../../assets/images/icon.png")}
+          source={Assets.icon}
           className="w-full h-40 rounded-lg"
         />
         <Text className="absolute top-10 left-4 text-gray-500 text-lg font-bold">
@@ -40,14 +47,18 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {newReleases.map((book) => (
-            <View key={book.id} className="mr-4">
+            <TouchableOpacity 
+              key={book.id} 
+              className="mr-4"
+              onPress={() => handleBookPress(book.id)}
+            >
               <Image
                 source={book.image}
                 className="w-32 h-46 rounded-lg"
               />
               <Text className="text-sm mt-2">{book.title}</Text>
               <Text className="text-gray-500 text-sm">{book.price}</Text>
-            </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
@@ -61,7 +72,11 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           {youMayAlsoLike.map((book) => (
-            <View key={book.id} className="flex-row items-center mb-2 bg-gray-100 p-4 rounded-lg gap-4">
+            <TouchableOpacity 
+              key={book.id} 
+              className="flex-row items-center mb-2 p-4 rounded-lg gap-4 border border-gray-200"
+              onPress={() => handleBookPress(book.id)}
+            >
               <Image
                 source={book.image}
                 className="w-30 h-38 rounded-lg mr-4"
@@ -81,7 +96,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                   ))}
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
