@@ -1,8 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons"; 
-import HomeScreen from "../screens/Home/HomeScreen";
-import LoginScreen from "../screens/Login/LoginScreen"; 
+import HomeScreen from "../screens/home/HomeScreen";
+import LoginScreen from "../screens/auth/LoginScreen"; 
 
 const Tab = createBottomTabNavigator();
 
