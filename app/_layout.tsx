@@ -1,10 +1,14 @@
 import { Stack } from "expo-router";
-import '../global.css';
+import Header from "./components/Header"; // Import the Header component
+import "../global.css";
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
+    <>
+      <Header /> {/* Add the Header here */}
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
+    </>
   );
 }
