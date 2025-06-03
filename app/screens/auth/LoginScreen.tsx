@@ -6,7 +6,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <View className="flex-1 bg-white px-6 py-20">
+    <View className="flex-1 bg-white px-6 pt-20">
       <Text className="text-3xl font-bold mb-6 mt-auto">Sign In</Text>
       <Text className="text-gray-500 mb-16">
         New User? <Text className="text-blue-600">Create an account</Text>
@@ -31,7 +31,7 @@ const LoginScreen = () => {
       <TouchableOpacity className="w-full bg-blue-600 rounded-lg py-3 items-center mb-20">
         <Text className="text-white text-lg font-semibold">Continue</Text>
       </TouchableOpacity>
-      <Text className="text-blue-500 text-center mt-auto">
+      <Text className="text-blue-500 text-lg text-center mt-auto py-8">
         Sign In as a business owner
       </Text>
     </View>

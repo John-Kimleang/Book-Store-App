@@ -1,8 +1,8 @@
-import React from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons"; 
+import React from "react";
+import LoginScreen from "../screens/auth/LoginScreen";
 import HomeScreen from "../screens/home/HomeScreen";
-import LoginScreen from "../screens/auth/LoginScreen"; 
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +12,6 @@ const TabNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: React.ComponentProps<typeof Ionicons>["name"];
-
           if (route.name === "Home") {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "AudioBook") {
@@ -21,8 +20,8 @@ const TabNavigator = () => {
             iconName = focused ? "book" : "book-outline";
           } else if (route.name === "Cart") {
             iconName = focused ? "cart" : "cart-outline";
-          } else if (route.name === "Favorite") {
-            iconName = focused ? "heart" : "heart-outline";
+          } else if (route.name === "Bookmark") {
+            iconName = focused ? "bookmark" : "bookmark-outline";
           } else {
             iconName = "ellipse"; 
           }
@@ -38,7 +37,7 @@ const TabNavigator = () => {
       <Tab.Screen name="AudioBook" component={LoginScreen} />
       <Tab.Screen name="Book" component={LoginScreen} />
       <Tab.Screen name="Cart" component={LoginScreen} />
-      <Tab.Screen name="Favorite" component={LoginScreen} />
+      <Tab.Screen name="Bookmark" component={LoginScreen} />
     </Tab.Navigator>
   );
 };
