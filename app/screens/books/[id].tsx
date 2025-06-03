@@ -1,14 +1,15 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  StatusBar,
+    Image,
+    ScrollView,
+    StatusBar,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
-import { useLocalSearchParams, router } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
 
 type Book = {
   id: number;
@@ -55,11 +56,33 @@ export default function BookDetail() {
   const { id } = useLocalSearchParams();
   const bookId = Number(id);
   const book = bookData[bookId] || bookData[1]; // Fallback to first book
+  const navigation = useNavigation();
+  const [quantity, setQuantity] = React.useState(1);
+
+  const increaseQuantity = () => setQuantity((prev) => prev + 1);
+  const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  const calculateTotalPrice = () => {
+    const price = parseFloat(book.price.replace('$', ''));
+    return (price * quantity).toFixed(2);
+  };
+
+  // Back button and title on header
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: book.title,
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ flexDirection: 'row', alignItems: 'center'}}>
+          <Ionicons name="chevron-back" size={20} />
+          <Text >Back</Text>
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation, book.title]);
 
   return (
     <View className="flex-1 bg-gray-50">
       <StatusBar barStyle="light-content" backgroundColor="#4A90E2" />
-    
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <View className="items-center">
           <Image 
@@ -76,11 +99,9 @@ export default function BookDetail() {
             />
             <Text className="text-base font-semibold text-gray-700">{book.author}</Text>
           </View>
-
-          <Text className="text-2xl font-bold text-gray-800 mb-2 leading-8">{book.title}</Text>
           
+          <Text className="text-2xl font-bold text-gray-800 mb-2 leading-8">{book.title}</Text> 
           <Text className="text-base text-gray-600 mb-5 leading-6">{book.subtitle}</Text>
-
           <Text className="text-sm text-gray-700 leading-6 mb-5">{book.description}</Text>
 
           <View className="flex-row items-center mb-8">
@@ -102,10 +123,20 @@ export default function BookDetail() {
         </View>
       </ScrollView>
 
-      {/* Buy Button */}
-      <View className="absolute bottom-5 left-0 right-0 bg-white px-6 py-5 border-t border-gray-200">
-        <TouchableOpacity className="bg-cyan-400 py-4 rounded-xl items-center">
-          <Text className="text-white text-base font-semibold">Buy Now</Text>
+      <View className="absolute bottom-5 left-0 right-0 bg-white px-6 py-5 border-t border-gray-200 flex-row justify-between items-center">
+        <View className="flex-row items-center bg-gray-100 px-4 py-2 rounded-lg">
+          <Text className="text-gray-500 mr-4">QTY</Text>
+          <TouchableOpacity onPress={decreaseQuantity} className="px-2">
+            <Text className="text-lg font-bold">-</Text>
+          </TouchableOpacity>
+          <Text className="mx-2 text-lg font-semibold">{quantity}</Text>
+          <TouchableOpacity onPress={increaseQuantity} className="px-2">
+            <Text className="text-lg font-bold">+</Text>
+          </TouchableOpacity>
+        </View>
+        <Text className="font-bold text-lg">Total: ${calculateTotalPrice()}</Text>
+        <TouchableOpacity className="bg-orange-500 py-4 px-6 rounded-xl items-center">
+          <Text className="text-white text-base font-semibold">Add to Cart</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -5,7 +5,6 @@ import "../global.css";
 export default function RootLayout() {
   return (
     <>
-      <Header /> 
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
