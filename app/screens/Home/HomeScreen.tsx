@@ -1,12 +1,91 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
-  return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-3xl font-bold mb-4">Welcome Home!</Text>
+  const newReleases = [
+    { id: 1, title: "Harry Potter", price: "€11.99", image: require("../../../assets/images/react-logo.png") },
+    { id: 2, title: "Eleanor Oliphant", price: "€9.05", image: require("../../../assets/images/react-logo.png") },
+    { id: 3, title: "The Subtle Art", price: "€20.00", image: require("../../../assets/images/react-logo.png") },
+    { id: 4, title: "The Art of War", price: "€30.00", image: require("../../../assets/images/react-logo.png") },
+  ];
 
-    </View>
+  const youMayAlsoLike = [
+    { id: 1, title: "Arena of Justice", reviews: "34 reviews", stars: 4, image: require("../../../assets/images/favicon.png") },
+    { id: 2, title: "Summer Camp", reviews: "12 reviews", stars: 3, image: require("../../../assets/images/favicon.png") },
+    { id: 3, title: "Medium Raw", reviews: "45 reviews", stars: 5, image: require("../../../assets/images/favicon.png") },
+  ];
+
+  return (
+    <ScrollView className="flex-1 bg-white px-4">
+      <View className="mx-4 mt-4 relative">
+        <Image
+          source={require("../../../assets/images/icon.png")}
+          className="w-full h-40 rounded-lg"
+        />
+        <Text className="absolute top-10 left-4 text-gray-500 text-lg font-bold">
+            Discover New Books with Latest Collection
+        </Text>
+        <Text className="absolute top-20 left-20 text-gray-500">
+            The Law of Power available now!
+        </Text>
+      </View>
+
+      <View className="mt-6 px-4">
+        <View className="flex-row justify-between items-center mb-4">
+          <Text className="text-lg font-bold">New Releases</Text>
+          <TouchableOpacity>
+            <Text className="text-blue-500">View all</Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {newReleases.map((book) => (
+            <View key={book.id} className="mr-4">
+              <Image
+                source={book.image}
+                className="w-32 h-46 rounded-lg"
+              />
+              <Text className="text-sm mt-2">{book.title}</Text>
+              <Text className="text-gray-500 text-sm">{book.price}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+
+      <View className="mt-6 px-4">
+        <View className="flex-row justify-between items-center mb-4">
+          <Text className="text-lg font-bold">You may also like</Text>
+          <TouchableOpacity>
+            <Text className="text-blue-500">View all</Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {youMayAlsoLike.map((book) => (
+            <View key={book.id} className="flex-row items-center mb-2 bg-gray-100 p-4 rounded-lg gap-4">
+              <Image
+                source={book.image}
+                className="w-30 h-38 rounded-lg mr-4"
+              />
+              <View className="flex-1">
+                <Text className="text-lg font-bold">{book.title}</Text>
+                <Text className="text-gray-500">{book.reviews}</Text>
+                <View className="flex-row items-center mt-2">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Ionicons
+                      key={index}
+                      name={index < book.stars ? "star" : "star-outline"}
+                      size={16}
+                      color="gold"
+                      className="mr-1"
+                    />
+                  ))}
+                </View>
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+    </ScrollView>
   );
 };
 
