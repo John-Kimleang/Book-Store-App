@@ -72,9 +72,9 @@ export default function BookDetail() {
     navigation.setOptions({
       title: book.title,
       headerLeft: () => (
-        <TouchableOpacity onPress={() => navigation.goBack()} style={{ flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity onPress={() => navigation.goBack()} >
           <Ionicons name="chevron-back" size={20} />
-          <Text >Back</Text>
+          {/* <Text >Back</Text> */}
         </TouchableOpacity>
       ),
     });
@@ -125,18 +125,18 @@ export default function BookDetail() {
 
       <View className="absolute bottom-5 left-0 right-0 bg-white px-6 py-5 border-t border-gray-200 flex-row justify-between items-center">
         <View className="flex-row items-center bg-gray-100 px-4 py-2 rounded-lg">
-          <Text className="text-gray-500 mr-4">QTY</Text>
-          <TouchableOpacity onPress={decreaseQuantity} className="px-2">
-            <Text className="text-lg font-bold">-</Text>
+          <Text className="text-gray-500 mr-4 font-medium">QTY</Text>
+          <TouchableOpacity onPress={decreaseQuantity} className="px-3 py-1 bg-red-100 rounded-full">
+            <Text className="text-lg font-bold text-red-500">-</Text>
           </TouchableOpacity>
-          <Text className="mx-2 text-lg font-semibold">{quantity}</Text>
-          <TouchableOpacity onPress={increaseQuantity} className="px-2">
-            <Text className="text-lg font-bold">+</Text>
+          <Text className="mx-3 text-lg font-semibold text-gray-700">{quantity}</Text>
+          <TouchableOpacity onPress={increaseQuantity} className="px-3 py-1 bg-green-100 rounded-full">
+            <Text className="text-lg font-bold text-green-500">+</Text>
           </TouchableOpacity>
         </View>
-        <Text className="font-bold text-lg">Total: ${calculateTotalPrice()}</Text>
-        <TouchableOpacity className="bg-orange-500 py-4 px-6 rounded-xl items-center">
-          <Text className="text-white text-base font-semibold">Add to Cart</Text>
+        <Text className="font-bold text-lg text-gray-800">Total: ${calculateTotalPrice()}</Text>
+        <TouchableOpacity className="bg-blue-500 p-3 rounded-full items-center justify-center">
+          <Ionicons name="cart" size={24} color="white" />
         </TouchableOpacity>
       </View>
     </View>

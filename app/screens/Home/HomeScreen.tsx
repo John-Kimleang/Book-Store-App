@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   return (
     <>
         <Header />
-        <ScrollView className="flex-1 bg-white px-8">
+        <ScrollView className="flex-1 bg-white px-4">
         <View className="mt-4 relative">
             <Image
             source={Assets.icon}
