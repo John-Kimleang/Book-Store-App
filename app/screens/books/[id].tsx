@@ -55,7 +55,7 @@ const bookData: Record<number, Book> = {
 export default function BookDetail() {
   const { id } = useLocalSearchParams();
   const bookId = Number(id);
-  const book = bookData[bookId] || bookData[1]; // Fallback to first book
+  const book = bookData[bookId] || bookData[1];
   const navigation = useNavigation();
   const [quantity, setQuantity] = React.useState(1);
 
@@ -98,6 +98,9 @@ export default function BookDetail() {
               className="w-10 h-10 rounded-full mr-3" 
             />
             <Text className="text-base font-semibold text-gray-700">{book.author}</Text>
+            <TouchableOpacity>
+              <Ionicons name="bookmark" className="flex ml-20" size={24} />
+            </TouchableOpacity>
           </View>
           
           <Text className="text-2xl font-bold text-gray-800 mb-2 leading-8">{book.title}</Text> 
@@ -126,12 +129,12 @@ export default function BookDetail() {
       <View className="absolute bottom-5 left-0 right-0 bg-white px-6 py-5 border-t border-gray-200 flex-row justify-between items-center">
         <View className="flex-row items-center bg-gray-100 px-4 py-2 rounded-lg">
           <Text className="text-gray-500 mr-4 font-medium">QTY</Text>
-          <TouchableOpacity onPress={decreaseQuantity} className="px-3 py-1 bg-red-100 rounded-full">
-            <Text className="text-lg font-bold text-red-500">-</Text>
+          <TouchableOpacity onPress={decreaseQuantity} className="px-3 py-1">
+            <Text className="text-lg font-bold">-</Text>
           </TouchableOpacity>
           <Text className="mx-3 text-lg font-semibold text-gray-700">{quantity}</Text>
-          <TouchableOpacity onPress={increaseQuantity} className="px-3 py-1 bg-green-100 rounded-full">
-            <Text className="text-lg font-bold text-green-500">+</Text>
+          <TouchableOpacity onPress={increaseQuantity} className="px-3 py-1">
+            <Text className="text-lg font-bold">+</Text>
           </TouchableOpacity>
         </View>
         <Text className="font-bold text-lg text-gray-800">Total: ${calculateTotalPrice()}</Text>
