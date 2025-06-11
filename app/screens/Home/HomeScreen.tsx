@@ -7,16 +7,16 @@ import Header from "../../components/Header";
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
   const newReleases = [
-    { id: 1, title: "The Pioneer", price: "$11.99", image: Assets.reactLogo },
-    { id: 2, title: "The Art of War", price: "$30.00", image: Assets.reactLogo },
-    { id: 3, title: "The Subtle Art", price: "$20.00", image: Assets.reactLogo },
-    { id: 4, title: "Harry Potter", price: "$5.00", image: Assets.reactLogo },
+    { id: 1, title: "The Pioneer", price: "$11.99", image: Assets.artofWarBook },
+    { id: 2, title: "The Art of War", price: "$30.00", image: Assets.artofWarBook },
+    { id: 3, title: "The Subtle Art", price: "$20.00", image: Assets.artofWarBook },
+    { id: 4, title: "Harry Potter", price: "$5.00", image: Assets.artofWarBook },
   ];
 
   const youMayAlsoLike = [
-    { id: 5, title: "Arena of Justice", reviews: "34 reviews", stars: 4, image: Assets.favicon },
-    { id: 6, title: "Summer Camp", reviews: "12 reviews", stars: 3, image: Assets.favicon },
-    { id: 7, title: "Medium Raw", reviews: "45 reviews", stars: 5, image: Assets.favicon },
+    { id: 5, title: "Arena of Justice", reviews: "34 reviews", stars: 4, image: Assets.artofWarBook },
+    { id: 6, title: "Summer Camp", reviews: "12 reviews", stars: 3, image: Assets.artofWarBook },
+    { id: 7, title: "Medium Raw", reviews: "45 reviews", stars: 5, image: Assets.artofWarBook },
   ];
 
   //Book navigation
@@ -77,12 +77,12 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             {youMayAlsoLike.map((book) => (
                 <TouchableOpacity 
                 key={book.id} 
-                className="flex-row items-center mb-2 p-4 rounded-lg gap-4 border border-gray-200"
+                className="flex-row mb-2 p-4 rounded-lg gap-4 border border-gray-200"
                 onPress={() => handleBookPress(book.id)}
                 >
                 <Image
                     source={book.image}
-                    className="w-30 h-38 rounded-lg mr-4"
+                    className="w-28 h-24 rounded-lg"
                 />
                 <View className="flex-1">
                     <Text className="text-lg font-bold">{book.title}</Text>
