@@ -75,7 +75,7 @@ const BookScreen = () => {
     <>
         <Header/>
         <View className="flex-1 bg-gray-50">
-            <View className="bg-white pt-12 pb-4 px-4 shadow-sm">
+            <View className="bg-white py-4 px-4 shadow-sm">
                 <ScrollView 
                 horizontal 
                 showsHorizontalScrollIndicator={false}
@@ -84,13 +84,13 @@ const BookScreen = () => {
                 {categories.map((category) => (
                     <TouchableOpacity
                     key={category}
-                    className={`mr-6 pb-2 ${activeTab === category ? 'border-b-2 border-blue-500' : ''}`}
+                    className={`px-4 py-2 mx-1 rounded-full ${activeTab === category ? 'bg-blue-500' : 'bg-gray-200'}`}
                     onPress={() => setActiveTab(category)}
                     >
                     <Text className={`text-base ${
                         activeTab === category 
-                        ? 'text-blue-500 font-semibold' 
-                        : 'text-gray-500'
+                        ? 'text-white font-semibold' 
+                        : 'text-gray-700'
                     }`}>
                         {category}
                     </Text>
