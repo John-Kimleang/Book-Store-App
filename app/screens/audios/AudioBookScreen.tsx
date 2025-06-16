@@ -25,10 +25,6 @@ const AudioBookScreen = () => {
     ? books 
     : books.filter(book => book.category === activeTab);
  
-  const handleBookPress = (bookId: number) => {
-    router.push({ pathname: "/screens/books/[id]", params: { id: String(bookId) } });
-  };
-  
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }).map((_, index) => (
       <Ionicons
@@ -40,12 +36,27 @@ const AudioBookScreen = () => {
     ));
   };
 
+  const handleBookPress = (book: any) => {
+    router.push({
+      pathname: '/screens/audios/[id]',
+      params: {
+        id: book.id.toString(),
+        title: book.title,
+        author: book.author,
+        duration: book.duration,
+        category: book.category,
+        rating: book.rating.toString(),
+        reviews: book.reviews.toString(),
+        price: book.price.toString(),
+      }
+    });
+  };
+
   const renderBookItem = ({ item }: { item: any }) => (
     <TouchableOpacity 
       className="bg-white rounded-xl p-4 shadow-sm mb-4 mx-4 flex-row"
-      onPress={() => handleBookPress(item.id)}
+      onPress={() => handleBookPress(item)}
     >
-
       <Image
         source={item.image}
         className="w-20 h-28 rounded-lg mr-4"
