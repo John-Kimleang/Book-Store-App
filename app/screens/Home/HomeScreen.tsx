@@ -14,9 +14,9 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
   ];
 
   const youMayAlsoLike = [
-    { id: 5, title: "Arena of Justice", reviews: "34 reviews", stars: 4, image: Assets.artofWarBook },
-    { id: 6, title: "Summer Camp", reviews: "12 reviews", stars: 3, image: Assets.artofWarBook },
-    { id: 7, title: "Medium Raw", reviews: "45 reviews", stars: 5, image: Assets.artofWarBook },
+    { id: 5, title: "Harry Potter", price: "$11.99", author:"Jk. rowling", reviews: "34 reviews", stars: 4, image: Assets.harryPotterBook },
+    { id: 6, title: "Power of Habit", price: "$3.99", author:"Albert johnson", reviews: "12 reviews", stars: 3, image: Assets.powerofHabitBook },
+    { id: 7, title: "Medium Raw", price: "$20.99", rauthor:"Sun Tzu", eviews: "45 reviews", stars: 5, image: Assets.artofWarBook },
   ];
 
   //Book navigation
@@ -30,15 +30,15 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         <ScrollView className="flex-1 bg-white px-4">
         <View className="mt-4 relative">
             <Image
-            source={Assets.icon}
+            source={Assets.bookBanner}
             className="w-full h-40 rounded-lg"
             />
-            <Text className="absolute top-10 left-4 text-gray-500 text-lg font-bold">
+            {/* <Text className="absolute top-10 left-4 text-gray-500 text-lg font-bold">
                 Discover New Books with Latest Collection
             </Text>
             <Text className="absolute top-20 left-20 text-gray-500">
                 The Law of Power available now!
-            </Text>
+            </Text> */}
         </View>
 
         <View className="mt-6">
@@ -57,7 +57,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                 >
                 <Image
                     source={book.image}
-                    className="w-32 h-46 rounded-lg"
+                    className="w-32 h-36 rounded-lg"
                 />
                 <Text className="text-sm mt-2">{book.title}</Text>
                 <Text className="text-gray-500 text-sm">{book.price}</Text>
@@ -82,10 +82,11 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                 >
                 <Image
                     source={book.image}
-                    className="w-28 h-24 rounded-lg"
+                    className="w-28 h-36 rounded-lg"
                 />
                 <View className="flex-1">
                     <Text className="text-lg font-bold">{book.title}</Text>
+                    <Text className="text-lg text-gray-500">By {book.author}</Text>
                     <Text className="text-gray-500">{book.reviews}</Text>
                     <View className="flex-row items-center mt-2">
                     {Array.from({ length: 5 }).map((_, index) => (
@@ -98,6 +99,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
                         />
                     ))}
                     </View>
+                    <Text className="text-xl font-bold mt-4">{book.price}</Text>
                 </View>
                 </TouchableOpacity>
             ))}
