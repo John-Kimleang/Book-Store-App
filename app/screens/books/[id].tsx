@@ -1,23 +1,26 @@
+import Assets from '@/app/components/Assets';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import {
-    Image,
-    ScrollView,
-    StatusBar,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+
+import { ImageSourcePropType } from 'react-native';
 
 type Book = {
   id: number;
   title: string;
   subtitle: string;
   author: string;
-  authorImage: string;
-  coverImage: string;
+  authorImage: ImageSourcePropType;
+  coverImage: ImageSourcePropType;
   price: string;
   description: string;
   rating: number;
@@ -28,11 +31,11 @@ type Book = {
 const bookData: Record<number, Book> = {
   1: {
     id: 1,
-    title: "The Pioneers",
+    title: "Harry Potter",
     subtitle: "The Heroic Story of the Settlers Who Brought the American Ideal West",
-    author: "David McCullough",
-    authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-    coverImage: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop",
+    author: "J.K. Rowling",
+    authorImage: Assets.authorRobert,
+    coverImage: Assets.harryPotterBook,
     price: "$3.59",
     description: "David McCullough is best known for most nonfiction for his popular biographies of 'Read More'",
     rating: 4.5,
@@ -43,8 +46,8 @@ const bookData: Record<number, Book> = {
     title: "The Art of War",
     subtitle: "Ancient Wisdom for Modern Leaders",
     author: "Sun Tzu",
-    authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-    coverImage: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop",
+    authorImage: Assets.authorRobert,
+    coverImage: Assets.artofWarBook,
     price: "$30.00",
     description: "An ancient Chinese military treatise attributed to Sun Tzu, a high-ranking military general, strategist, and tactician.",
     rating: 4.5,
@@ -58,6 +61,7 @@ export default function BookDetail() {
   const book = bookData[bookId] || bookData[1];
   const navigation = useNavigation();
   const [quantity, setQuantity] = React.useState(1);
+  const [isBookmarked, setIsBookmarked] = React.useState(false);
 
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
@@ -65,6 +69,10 @@ export default function BookDetail() {
   const calculateTotalPrice = () => {
     const price = parseFloat(book.price.replace('$', ''));
     return (price * quantity).toFixed(2);
+  };
+
+  const toggleBookmark = () => {
+    setIsBookmarked((prev) => !prev);
   };
 
   // Back button and title on header
@@ -86,7 +94,7 @@ export default function BookDetail() {
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <View className="items-center bg-white py-10">
           <Image 
-            source={{ uri: book.coverImage }} 
+            source={book.coverImage} 
             className="w-48 h-64 rounded-xl shadow-lg" 
           />
         </View>
@@ -94,13 +102,10 @@ export default function BookDetail() {
         <View className="bg-white mt-2 rounded-t-3xl px-6 pt-8 pb-24">
           <View className="flex-row items-center mb-5">
             <Image 
-              source={{ uri: book.authorImage }} 
+              source={book.authorImage} 
               className="w-10 h-10 rounded-full mr-3" 
             />
             <Text className="text-base font-semibold text-gray-700">{book.author}</Text>
-            <TouchableOpacity>
-              <Ionicons name="bookmark" className="flex ml-20" size={24} />
-            </TouchableOpacity>
           </View>
           
           <Text className="text-2xl font-bold text-gray-800 mb-2 leading-8">{book.title}</Text> 
@@ -123,6 +128,17 @@ export default function BookDetail() {
 
           <Text className="text-sm text-gray-600 mb-1">Price</Text>
           <Text className="text-3xl font-bold text-green-600 mb-5">{book.price}</Text>
+
+          <TouchableOpacity
+            onPress={toggleBookmark}
+            className="absolute top-5 right-5 bg-gray-100 p-2 rounded-full shadow-md"
+          >
+            <Ionicons
+              name="bookmark"
+              size={24}
+              color={isBookmarked ? "blue" : "black"}
+            />
+          </TouchableOpacity>
         </View>
       </ScrollView>
 
