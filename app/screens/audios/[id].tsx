@@ -132,7 +132,7 @@ const AudioDetailScreen = () => {
   const progress = durationMillis > 0 ? (positionMillis / durationMillis) * 100 : 0;
 
   return (
-    <View className="flex-1 bg-teal-500">
+    <View className="flex-1 bg-blue-500">
       <View className="items-center mt-20">
         <Image
           source={book.image}
@@ -147,7 +147,6 @@ const AudioDetailScreen = () => {
 
       {/* Audio Controls */}
       <View className="flex-1 justify-center items-center px-6">
-        {/* Progress Bar */}
         <View className="w-full h-1 bg-gray-300 rounded-full mb-6 overflow-hidden">
           <View
             className="h-full bg-white"
