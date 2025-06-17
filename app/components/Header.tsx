@@ -1,6 +1,7 @@
 import { TextInput, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import Assets from "./Assets";
 
 const Header = () => {
   return (
@@ -20,7 +21,7 @@ const Header = () => {
 
       <TouchableOpacity>
         <Image
-          source={require("../../assets/images/react-logo.png")} 
+          source={Assets.profile} 
           className="w-10 h-10 rounded-full"
         />
       </TouchableOpacity>

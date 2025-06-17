@@ -11,11 +11,11 @@ const AudioBookScreen = () => {
   const categories = ['All', 'Comic', 'Business', 'Education', 'Literature', 'Science'];
 
   const books = [
-    { id: 1, title: "Six Stories", author: "Matt Haper", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature", duration: "1:30:20" },
+    { id: 1, title: "The Art of War", author: "Sun Tzu", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature", duration: "1:30:20" },
     { id: 2, title: "Theory of Thing", author: "Miachel Roy", rating: 4, reviews: 250, price: 18.50, image: Assets.artofWarBook, category: "Science", duration: "2:15:45" },
-    { id: 3, title: "Teaspoon of Earth", author: "Dina Nayeri", rating: 4, reviews: 47, price: 14.75, image: Assets.powerofHabitBook, category: "Literature", duration: "1:45:30" },
+    { id: 3, title: "Power of Habit", author: "Albert Johnson", rating: 4, reviews: 47, price: 14.75, image: Assets.powerofHabitBook, category: "Literature", duration: "1:45:30" },
     { id: 4, title: "Gone Wild", author: "Mia George", rating: 3, reviews: 286, price: 11.99, image: Assets.powerofHabitBook, category: "Education", duration: "3:20:15" },
-    { id: 5, title: "Business Mastery", author: "John Smith", rating: 5, reviews: 156, price: 24.99, image: Assets.harryPotterBook, category: "Business", duration: "2:45:30" },
+    { id: 5, title: "Harry Potter & The magic", author: "J.K Rowling", rating: 5, reviews: 156, price: 24.99, image: Assets.harryPotterBook, category: "Business", duration: "2:45:30" },
     { id: 6, title: "Comic Adventures", author: "Jane Doe", rating: 4, reviews: 89, price: 9.99, image: Assets.harryPotterBook, category: "Comic", duration: "1:15:20" },
     { id: 7, title: "Learning Path", author: "Sarah Wilson", rating: 4, reviews: 234, price: 16.50, image: Assets.reactLogo, category: "Education", duration: "4:10:25" },
     { id: 8, title: "Hero's Journey", author: "Alex Marvel", rating: 5, reviews: 445, price: 13.25, image: Assets.powerofHabitBook, category: "Comic", duration: "2:30:40" }
@@ -62,33 +62,25 @@ const AudioBookScreen = () => {
         className="w-20 h-28 rounded-lg mr-4"
         resizeMode="cover"
       />
-      
       <View className="flex-1 justify-between">
         <View>
-          <Text className="text-lg font-semibold text-gray-800 mb-1" numberOfLines={2}>
+          <Text className="text-xl font-semibold text-gray-800 mb-1" numberOfLines={2}>
             {item.title}
           </Text>
-          <Text className="text-sm text-gray-600 mb-2" numberOfLines={1}>
-            by {item.author}
+          <Text className="text-md text-gray-600 mb-2" numberOfLines={1}>
+            By {item.author}
           </Text>
           
-          {/* Duration */}
-          <View className="flex-row items-center mb-2">
-            <Ionicons name="time-outline" size={14} color="#666" style={{ marginRight: 4 }} />
-            <Text className="text-xs text-gray-600">{item.duration}</Text>
-          </View>
-          
-          {/* Star rating */}
-          <View className="flex-row items-center mb-2">
-            {renderStars(item.rating)}
-            <Text className="text-xs text-gray-500 ml-2">({item.reviews})</Text>
+          <View className="flex-row items-center mb-1">
+            <Ionicons name="time-outline" size={18} color="#666" style={{ marginRight: 4 }} />
+            <Text className="text-md text-gray-600">{item.duration}</Text>
           </View>
         </View>
         
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center">
             <Ionicons name="play-circle" size={18} color="#3B82F6" style={{ marginRight: 6 }} />
-            <Text className="text-sm text-blue-500 font-medium">Play Now</Text>
+            <Text className="text-md text-blue-500 font-medium">Play Now</Text>
           </View>
           <TouchableOpacity>
             <Ionicons name="bookmark-outline" size={20} color="#3B82F6" />

@@ -5,7 +5,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Assets from "../../components/Assets";
 import Header from "../../components/Header";
 
-const HomeScreen = ({ navigation }: { navigation: any }) => {
+const HomeScreen = () => {
   const newReleases = [
     { id: 1, title: "The Pioneer", price: "$11.99", image: Assets.artofWarBook },
     { id: 2, title: "The Art of War", price: "$30.00", image: Assets.artofWarBook },
@@ -33,19 +33,13 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             source={Assets.bookBanner}
             className="w-full h-40 rounded-lg"
             />
-            {/* <Text className="absolute top-10 left-4 text-gray-500 text-lg font-bold">
-                Discover New Books with Latest Collection
-            </Text>
-            <Text className="absolute top-20 left-20 text-gray-500">
-                The Law of Power available now!
-            </Text> */}
         </View>
 
         <View className="mt-6">
             <View className="flex-row justify-between items-center mb-4">
             <Text className="text-lg font-bold">New Releases</Text>
             <TouchableOpacity>
-                <Text className="text-blue-500">View all</Text>
+                {/* <Text className="text-blue-500">View all</Text> */}
             </TouchableOpacity>
             </View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -77,7 +71,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
             {youMayAlsoLike.map((book) => (
                 <TouchableOpacity 
                 key={book.id} 
-                className="flex-row mb-2 p-4 rounded-lg gap-4 border border-gray-200"
+                className="flex-row bg-white rounded-xl p-4 shadow-sm mb-4 mx-2 gap-8"
                 onPress={() => handleBookPress(book.id)}
                 >
                 <Image
