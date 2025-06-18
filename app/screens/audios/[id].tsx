@@ -18,6 +18,7 @@ const AudioDetailScreen = () => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [positionMillis, setPositionMillis] = React.useState(0);
   const [durationMillis, setDurationMillis] = React.useState(0);
+  const [playbackRate, setPlaybackRate] = React.useState(1);
 
   const book = {
     id: params.id,
@@ -96,6 +97,13 @@ const AudioDetailScreen = () => {
     }
   }
 
+  async function changePlaybackRate(rate: number) {
+    if (sound) {
+      await sound.setRateAsync(rate, true);
+      setPlaybackRate(rate);
+    }
+  }
+
   React.useEffect(() => {
     let interval: any;
 
@@ -171,6 +179,19 @@ const AudioDetailScreen = () => {
           <TouchableOpacity onPress={skipForward}>
             <Ionicons name="play-forward" size={32} color="white" />
           </TouchableOpacity>
+        </View>
+
+        {/* Playback Rate Controls */}
+        <View className="flex-row justify-center items-center w-full px-8 mt-4">
+          {[0.9, 1, 1.5, 2].map((rate) => (
+            <TouchableOpacity
+              key={rate}
+              onPress={() => changePlaybackRate(rate)}
+              className={`px-4 py-2 rounded-full ${playbackRate === rate ? 'bg-blue-500' : 'bg-gray-200'}`}
+            >
+              <Text className={`text-sm ${playbackRate === rate ? 'text-white' : 'text-gray-700'}`}>{rate}x</Text>
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
     </View>
