@@ -17,7 +17,7 @@ const HomeScreen = () => {
     { id: 5, title: "Harry Potter", price: "$11.99", author:"Jk. rowling", reviews: "34 reviews", stars: 4, image: Assets.harryPotterBook },
     { id: 6, title: "Power of Habit", price: "$3.99", author:"Albert johnson", reviews: "12 reviews", stars: 3, image: Assets.powerofHabitBook },
     { id: 7, title: "Art of Raw", price: "$20.99", author:"Sun Tzu", reviews: "45 reviews", stars: 5, image: Assets.artofWarBook },
-  ];
+  ];        
 
   //Book navigation
   const handleBookPress = (bookId: number) => {
