@@ -152,16 +152,15 @@ const AudioDetailScreen = () => {
         </Text>
         <Text className="text-white text-xl mt-2">by {book.author}</Text>
       </View>
-
       {/* Audio Controls */}
       <View className="flex-1 justify-center items-center px-6">
         <View className="w-full h-1 bg-gray-300 rounded-full mb-6 overflow-hidden">
           <View
-            className="h-full bg-white"
+            className="bg-white"
             style={{ width: `${progress}%` }}
           />
         </View>
-
+      
         {/* Time Display */}
         <View className="flex-row justify-between w-full px-2 mb-6">
           <Text className="text-white text-xs">{formatTime(positionMillis)}</Text>
@@ -180,19 +179,20 @@ const AudioDetailScreen = () => {
             <Ionicons name="play-forward" size={32} color="white" />
           </TouchableOpacity>
         </View>
-
-        {/* Playback Rate Controls */}
+        
+        {/* Playback Speed */}
         <View className="flex-row justify-center items-center w-full px-8 mt-4">
           {[0.9, 1, 1.5, 2].map((rate) => (
             <TouchableOpacity
               key={rate}
               onPress={() => changePlaybackRate(rate)}
-              className={`px-4 py-2 rounded-full ${playbackRate === rate ? 'bg-blue-500' : 'bg-gray-200'}`}
+              className={`px-4 py-2 rounded-full ${playbackRate === rate ? 'bg-gray-200' : 'bg-blue-500'}`}
             >
-              <Text className={`text-sm ${playbackRate === rate ? 'text-white' : 'text-gray-700'}`}>{rate}x</Text>
+              <Text className={`text-sm ${playbackRate === rate ? 'text-gray-500' : 'text-white'}`}>{rate}x</Text>
             </TouchableOpacity>
           ))}
         </View>
+
       </View>
     </View>
   );
