@@ -31,27 +31,87 @@ type Book = {
 const bookData: Record<number, Book> = {
   1: {
     id: 1,
-    title: "Harry Potter",
-    subtitle: "The Heroic Story of the Settlers Who Brought the American Ideal West",
-    author: "J.K. Rowling",
+    title: "The Let Them",
+    subtitle: "Empowering Yourself to Say No",
+    author: "Mel Robbins",
     authorImage: Assets.authorRobert,
-    coverImage: Assets.harryPotterBook,
-    price: "$3.59",
-    description: "David McCullough is best known for most nonfiction for his popular biographies of 'Read More'",
-    rating: 4.5,
-    reviews: 1234,
+    coverImage: Assets.letThemBook,
+    price: "$18.50",
+    description: "A motivational book that teaches you how to set boundaries and take control of your life.",
+    rating: 4,
+    reviews: 250,
   },
-    2: {
+  2: {
     id: 2,
     title: "The Art of War",
     subtitle: "Ancient Wisdom for Modern Leaders",
     author: "Sun Tzu",
     authorImage: Assets.authorRobert,
     coverImage: Assets.artofWarBook,
-    price: "$30.00",
+    price: "$12.99",
     description: "An ancient Chinese military treatise attributed to Sun Tzu, a high-ranking military general, strategist, and tactician.",
-    rating: 4.5,
-    reviews: 532,
+    rating: 4,
+    reviews: 93,
+  },
+  3: {
+    id: 3,
+    title: "Power of Habit",
+    subtitle: "Why We Do What We Do in Life and Business",
+    author: "Albert Johnson",
+    authorImage: Assets.authorRobert,
+    coverImage: Assets.powerofHabitBook,
+    price: "$14.75",
+    description: "A book that explores the science behind habit formation and how to change them.",
+    rating: 4,
+    reviews: 47,
+  },
+  4: {
+    id: 4,
+    title: "Making Thing",
+    subtitle: "Happen: Mastering Project Management",
+    author: "Mia George",
+    authorImage: Assets.authorRobert,
+    coverImage: Assets.makingThingHappenBook,
+    price: "$11.99",
+    description: "A practical guide to project management and achieving goals.",
+    rating: 3,
+    reviews: 286,
+  },
+  5: {
+    id: 5,
+    title: "The Power",
+    subtitle: "Unlocking Your Potential",
+    author: "J.K Rowling",
+    authorImage: Assets.authorRobert,
+    coverImage: Assets.powerBook,
+    price: "$24.99",
+    description: "A book that inspires readers to harness their inner strength and achieve greatness.",
+    rating: 5,
+    reviews: 156,
+  },
+  6: {
+    id: 6,
+    title: "Theory of Everything",
+    subtitle: "Exploring the Universe",
+    author: "Jane Doe",
+    authorImage: Assets.authorRobert,
+    coverImage: Assets.theoryOfEverythingBook,
+    price: "$9.99",
+    description: "A fascinating look at the universe and the theories that explain it.",
+    rating: 4,
+    reviews: 89,
+  },
+  7: {
+    id: 7,
+    title: "One Thing",
+    subtitle: "The Surprisingly Simple Truth Behind Extraordinary Results",
+    author: "Sarah Wilson",
+    authorImage: Assets.authorRobert,
+    coverImage: Assets.oneThingBook,
+    price: "$16.50",
+    description: "A book that teaches you how to focus on what truly matters to achieve success.",
+    rating: 4,
+    reviews: 234,
   },
 };
 
@@ -131,7 +191,7 @@ export default function BookDetail() {
 
           <TouchableOpacity
             onPress={toggleBookmark}
-            className="absolute top-5 right-5 bg-gray-100 p-2 rounded-full shadow-md"
+            className="absolute top-5 right-5 p-2 shadow-sm"
           >
             <Ionicons
               name="bookmark"

@@ -24,9 +24,9 @@ const CartScreen = () => {
   const [cartItems, setCartItems] = useState<BookCartItem[]>([
     {
       id: 1,
-      title: 'Harry Potter',
+      title: 'Power',
       author: 'J.K. Rowling',
-      coverImage: Assets.harryPotterBook,
+      coverImage: Assets.powerBook,
       price: 3.59,
       quantity: 1,
     },
@@ -68,7 +68,7 @@ const CartScreen = () => {
       <View className="gap-4 mb-6">
         {cartItems.map((item) => (
           <View key={item.id} className="bg-white rounded-xl p-4 shadow-sm">
-            <View className="flex-row items-center space-x-4">
+            <View className="flex-row items-center gap-4">
               <Image source={item.coverImage} className="w-16 h-24 rounded" />
 
               <View className="flex-1">
@@ -77,7 +77,7 @@ const CartScreen = () => {
 
                 <View className="flex-row items-center justify-between">
                   <Text className="text-lg font-semibold text-gray-800">${item.price}</Text>
-                  <View className="flex-row items-center space-x-3">
+                  <View className="flex-row items-center gap-3">
                     <TouchableOpacity
                       onPress={() => updateQuantity(item.id, -1)}
                       className="w-8 h-8 rounded-full border border-gray-200 items-center justify-center"
@@ -101,7 +101,7 @@ const CartScreen = () => {
 
       <View className="bg-white rounded-xl p-4 shadow-sm mb-6">
         <View className="flex-row items-center justify-between">
-          <View className="flex-row items-center space-x-3">
+          <View className="flex-row items-center gap-3">
             <View className="w-10 h-10 bg-blue-100 rounded-full items-center justify-center">
               <Ionicons name="cart" size={20} color="#3B82F6" />
             </View>

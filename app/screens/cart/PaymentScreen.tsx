@@ -74,16 +74,15 @@ const PaymentScreen = () => {
         </View>
       </View>
 
-      {/* Alternate Methods */}
       <View className="bg-white rounded-xl p-4 mb-6 shadow-sm">
         <Text className="font-semibold text-gray-800 mb-4">Other Payment Methods</Text>
 
         <View className="space-y-3">
           <TouchableOpacity className="flex-row items-center gap-3 p-3 rounded-lg border border-gray-200">
             <View className="w-10 h-10 bg-blue-100 rounded-lg items-center justify-center">
-              <Ionicons name="logo-google" size={20} />
+              <Ionicons name="logo-apple" size={20} />
             </View>
-            <Text className="font-medium text-gray-800">Google Pay</Text>
+            <Text className="font-medium text-gray-800">Apple Pay</Text>
           </TouchableOpacity>
 
           <TouchableOpacity className="flex-row items-center gap-3 p-3 rounded-lg border border-gray-200">
@@ -104,7 +103,6 @@ const PaymentScreen = () => {
         <Text className="text-sm text-gray-500">Includes all taxes and discounts</Text>
       </View>
 
-      {/* Pay Now Button */}
       <TouchableOpacity className="w-full bg-blue-500 py-4 rounded-xl items-center justify-center mb-10">
         <Text className="text-white font-semibold text-lg">PAY NOW</Text>
       </TouchableOpacity>
