@@ -65,7 +65,7 @@ const CartScreen = () => {
         <Text className="text-lg font-semibold text-gray-800">Your Book Cart</Text>
       </View>
 
-      <View className="space-y-4 mb-6">
+      <View className="gap-4 mb-6">
         {cartItems.map((item) => (
           <View key={item.id} className="bg-white rounded-xl p-4 shadow-sm">
             <View className="flex-row items-center space-x-4">
