@@ -7,16 +7,16 @@ import Header from "../../components/Header";
 
 const HomeScreen = () => {
   const newReleases = [
-    { id: 1, title: "The Pioneer", price: "$11.99", image: Assets.artofWarBook },
+    { id: 1, title: "The Let them know", price: "$11.99", image: Assets.letThemBook },
     { id: 2, title: "The Art of War", price: "$30.00", image: Assets.artofWarBook },
-    { id: 3, title: "The Subtle Art", price: "$20.00", image: Assets.artofWarBook },
-    { id: 4, title: "Harry Potter", price: "$5.00", image: Assets.artofWarBook },
+    { id: 3, title: "Making Things Happen", price: "$20.00", image: Assets.makingThingHappenBook },
+    { id: 4, title: "One Thing", price: "$5.00", image: Assets.oneThingBook },
   ];
 
   const youMayAlsoLike = [
-    { id: 5, title: "Harry Potter", price: "$11.99", author:"Jk. rowling", reviews: "34 reviews", stars: 4, image: Assets.harryPotterBook },
+    { id: 5, title: "The Power", price: "$11.99", author:"Jk. rowling", reviews: "34 reviews", stars: 4, image: Assets.powerBook },
     { id: 6, title: "Power of Habit", price: "$3.99", author:"Albert johnson", reviews: "12 reviews", stars: 3, image: Assets.powerofHabitBook },
-    { id: 7, title: "Art of Raw", price: "$20.99", author:"Sun Tzu", reviews: "45 reviews", stars: 5, image: Assets.artofWarBook },
+    { id: 7, title: "Theory of Everything", price: "$20.99", author:"Burgearn ST", reviews: "45 reviews", stars: 5, image: Assets.theoryOfEverythingBook },
   ];        
 
   //Book navigation
@@ -51,7 +51,7 @@ const HomeScreen = () => {
                 >
                 <Image
                     source={book.image}
-                    className="w-32 h-36 rounded-lg"
+                    className="w-36 h-48 rounded-lg"
                 />
                 <Text className="text-sm mt-2">{book.title}</Text>
                 <Text className="text-gray-500 text-sm">{book.price}</Text>

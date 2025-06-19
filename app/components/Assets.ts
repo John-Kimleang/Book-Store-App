@@ -9,9 +9,14 @@ const Assets: Record<string, ImageSourcePropType> = {
   profile: require("../../assets/images/profile_pic.jpg"),
   
   // Book Images
-  artofWarBook: require("../../assets/images/art_of_war.jpeg"),
+  artofWarBook: require("../../assets/images/the_art_of_war.jpg"),
   powerofHabitBook: require("../../assets/images/power_of_habit.jpg"),
   harryPotterBook: require("../../assets/images/harry_potter.jpeg"),
+  letThemBook: require("../../assets/images/let_them_book.jpg"),
+  makingThingHappenBook: require("../../assets/images/making_thing_happen.jpg"),
+  oneThingBook: require("../../assets/images/one_thing.jpg"),
+  powerBook:require("../../assets/images/power.jpg"),
+  theoryOfEverythingBook: require("../../assets/images/theory_of_everything.jpeg"),
   bookBanner: require("../../assets/images/book_banner.png"),
 
   // Author Images

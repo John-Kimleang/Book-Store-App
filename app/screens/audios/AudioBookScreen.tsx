@@ -11,14 +11,13 @@ const AudioBookScreen = () => {
   const categories = ['All', 'Comic', 'Business', 'Education', 'Literature', 'Science'];
 
   const books = [
-    { id: 1, title: "The Art of War", author: "Sun Tzu", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature", duration: "1:30:20" },
-    { id: 2, title: "Theory of Thing", author: "Miachel Roy", rating: 4, reviews: 250, price: 18.50, image: Assets.artofWarBook, category: "Science", duration: "2:15:45" },
+    { id: 1, title: "The Let Them", author: "Mel Robbins", rating: 4, reviews: 250, price: 18.50, image: Assets.letThemBook, category: "Science", duration: "2:15:45" },
+    { id: 2, title: "The Art of War", author: "Sun Tzu", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature", duration: "1:30:20" },
     { id: 3, title: "Power of Habit", author: "Albert Johnson", rating: 4, reviews: 47, price: 14.75, image: Assets.powerofHabitBook, category: "Literature", duration: "1:45:30" },
-    { id: 4, title: "Gone Wild", author: "Mia George", rating: 3, reviews: 286, price: 11.99, image: Assets.powerofHabitBook, category: "Education", duration: "3:20:15" },
-    { id: 5, title: "Harry Potter & The magic", author: "J.K Rowling", rating: 5, reviews: 156, price: 24.99, image: Assets.harryPotterBook, category: "Business", duration: "2:45:30" },
-    { id: 6, title: "Comic Adventures", author: "Jane Doe", rating: 4, reviews: 89, price: 9.99, image: Assets.harryPotterBook, category: "Comic", duration: "1:15:20" },
-    { id: 7, title: "Learning Path", author: "Sarah Wilson", rating: 4, reviews: 234, price: 16.50, image: Assets.reactLogo, category: "Education", duration: "4:10:25" },
-    { id: 8, title: "Hero's Journey", author: "Alex Marvel", rating: 5, reviews: 445, price: 13.25, image: Assets.powerofHabitBook, category: "Comic", duration: "2:30:40" }
+    { id: 4, title: "Making Thing", author: "Mia George", rating: 3, reviews: 286, price: 11.99, image: Assets.makingThingHappenBook, category: "Education", duration: "3:20:15" },
+    { id: 5, title: "The Power", author: "J.K Rowling", rating: 5, reviews: 156, price: 24.99, image: Assets.powerBook, category: "Business", duration: "2:45:30" },
+    { id: 6, title: "Theory of Everything", author: "Jane Doe", rating: 4, reviews: 89, price: 9.99, image: Assets.theoryOfEverythingBook, category: "Comic", duration: "1:15:20" },
+    { id: 7, title: "One Thing", author: "Sarah Wilson", rating: 4, reviews: 234, price: 16.50, image: Assets.oneThingBook, category: "Education", duration: "4:10:25" },
   ];
 
   const filteredBooks = activeTab === 'All' 

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Text, View, Image, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import Assets  from '../../components/Assets';
+import React, { useState } from 'react';
+import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import Assets from '../../components/Assets';
 import Header from "../../components/Header";
 
 const BookScreen = () => {
@@ -11,14 +11,13 @@ const BookScreen = () => {
   const categories = ['All', 'Comic', 'Business', 'Education', 'Literature', 'Science'];
 
   const books = [
-    { id: 1, title: "Six Stories", author: "Matt Haper", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature" },
-    { id: 2, title: "Theory of Thing", author: "Miachel Roy", rating: 4, reviews: 250, price: 18.50, image: Assets.artofWarBook, category: "Science" },
-    { id: 3, title: "Teaspoon of Earth", author: "Dina Nayeri", rating: 4, reviews: 47, price: 14.75, image: Assets.powerofHabitBook, category: "Literature" },
-    { id: 4, title: "Gone Wild", author: "Mia George", rating: 3, reviews: 286, price: 11.99, image: Assets.powerofHabitBook, category: "Education" },
-    { id: 5, title: "Business Mastery", author: "John Smith", rating: 5, reviews: 156, price: 24.99, image: Assets.harryPotterBook, category: "Business" },
-    { id: 6, title: "Comic Adventures", author: "Jane Doe", rating: 4, reviews: 89, price: 9.99, image: Assets.harryPotterBook, category: "Comic" },
-    { id: 7, title: "Learning Path", author: "Sarah Wilson", rating: 4, reviews: 234, price: 16.50, image: Assets.reactLogo, category: "Education" },
-    { id: 8, title: "Hero's Journey", author: "Alex Marvel", rating: 5, reviews: 445, price: 13.25, image: Assets.powerofHabitBook, category: "Comic" }
+    { id: 1, title: "The Let Them", author: "Mel Robbins", rating: 4, reviews: 250, price: 18.50, image: Assets.letThemBook, category: "Science" },
+    { id: 2, title: "The Art of War", author: "Sun Tzu", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature" },
+    { id: 3, title: "Power of Habit", author: "Albert Johnson", rating: 4, reviews: 47, price: 14.75, image: Assets.powerofHabitBook, category: "Literature" },
+    { id: 4, title: "Making Thing", author: "Mia George", rating: 3, reviews: 286, price: 11.99, image: Assets.makingThingHappenBook, category: "Education" },
+    { id: 5, title: "The Power", author: "J.K Rowling", rating: 5, reviews: 156, price: 24.99, image: Assets.powerBook, category: "Business" },
+    { id: 6, title: "Theory of Everything", author: "Jane Doe", rating: 4, reviews: 89, price: 9.99, image: Assets.theoryOfEverythingBook, category: "Comic" },
+    { id: 7, title: "One Thing", author: "Sarah Wilson", rating: 4, reviews: 234, price: 16.50, image: Assets.oneThingBook, category: "Education" },
   ];
 
   const filteredBooks = activeTab === 'All' 
@@ -48,7 +47,7 @@ const BookScreen = () => {
     >
       <Image
         source={item.image}
-        className="w-full h-40 rounded-lg mb-3"
+        className="w-full h-56 rounded-lg mb-3"
         resizeMode="cover"
       />
       <Text className="text-base font-semibold text-gray-800 mb-1" numberOfLines={1}>
