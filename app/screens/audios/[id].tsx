@@ -34,14 +34,13 @@ const AudioDetailScreen = () => {
 
   function getBookImage(bookId: string) {
     const imageMap: { [key: string]: any } = {
-      '1': Assets.artofWarBook,
+      '1': Assets.letThemBook,
       '2': Assets.artofWarBook,
       '3': Assets.powerofHabitBook,
-      '4': Assets.powerofHabitBook,
-      '5': Assets.harryPotterBook,
-      '6': Assets.harryPotterBook,
-      '7': Assets.reactLogo,
-      '8': Assets.powerofHabitBook,
+      '4': Assets.makingThingHappenBook,
+      '5': Assets.powerBook,
+      '6': Assets.theoryOfEverythingBook,
+      '7': Assets.oneThingBook,
     };
     return imageMap[bookId] || Assets.artofWarBook;
   }
@@ -83,7 +82,7 @@ const AudioDetailScreen = () => {
     if (sound) {
       const status = await sound.getStatusAsync();
       if (status.isLoaded) {
-        await sound.setPositionAsync(status.positionMillis + 10000); // skip +10s
+        await sound.setPositionAsync(status.positionMillis + 10000); 
       }
     }
   }
@@ -92,7 +91,7 @@ const AudioDetailScreen = () => {
     if (sound) {
       const status = await sound.getStatusAsync();
       if (status.isLoaded) {
-        await sound.setPositionAsync(Math.max(status.positionMillis - 10000, 0)); // skip -10s
+        await sound.setPositionAsync(Math.max(status.positionMillis - 10000, 0)); 
       }
     }
   }

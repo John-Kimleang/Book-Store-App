@@ -1,12 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import LoginScreen from "../screens/auth/LoginScreen";
-import HomeScreen from "../screens/home/HomeScreen";
-import BookScreen from "../screens/books/BookScreen";
 import AudioBookScreen from "../screens/audios/AudioBookScreen";
+import BookScreen from "../screens/books/BookScreen";
 import CartScreen from "../screens/cart/CartScreen";
 import PaymentScreen from "../screens/cart/PaymentScreen";
+import HomeScreen from "../screens/home/HomeScreen";
+import LoginScreen from "../screens/auth/LoginScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +41,7 @@ const TabNavigator = () => {
       <Tab.Screen name="AudioBook" component={AudioBookScreen} />
       <Tab.Screen name="Book" component={BookScreen} />
       <Tab.Screen name="Cart" component={CartScreen} />
-      <Tab.Screen name="Bookmark" component={PaymentScreen} />
+      <Tab.Screen name="Bookmark" component={LoginScreen} />
     </Tab.Navigator>
   );
 };
