@@ -9,13 +9,13 @@ const HomeScreen = () => {
   const newReleases = [
     { id: 1, title: "The Let them know", price: "$11.99", image: Assets.letThemBook },
     { id: 2, title: "The Art of War", price: "$30.00", image: Assets.artofWarBook },
-    { id: 3, title: "Making Things Happen", price: "$20.00", image: Assets.makingThingHappenBook },
+    { id: 3, title: "Power of Habit", price: "$3.99", image: Assets.powerofHabitBook },
     { id: 4, title: "One Thing", price: "$5.00", image: Assets.oneThingBook },
   ];
 
   const youMayAlsoLike = [
     { id: 5, title: "The Power", price: "$11.99", author:"Jk. rowling", reviews: "34 reviews", stars: 4, image: Assets.powerBook },
-    { id: 6, title: "Power of Habit", price: "$3.99", author:"Albert johnson", reviews: "12 reviews", stars: 3, image: Assets.powerofHabitBook },
+    { id: 6, title: "Making Things Happen", price: "$20.00", author:"Albert johnson", reviews: "12 reviews", stars: 3, image: Assets.makingThingHappenBook },
     { id: 7, title: "Theory of Everything", price: "$20.99", author:"Burgearn ST", reviews: "45 reviews", stars: 5, image: Assets.theoryOfEverythingBook },
   ];        
 

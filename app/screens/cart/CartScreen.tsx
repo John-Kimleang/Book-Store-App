@@ -9,7 +9,14 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import Assets from '@/app/components/Assets';
 import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Header from '@/app/components/Header';
+
+type RootStackParamList = {
+  Cart: undefined;
+  Payment: { total: number };
+};
+
 type BookCartItem = {
   id: number;
   title: string;
@@ -20,7 +27,7 @@ type BookCartItem = {
 };
 
 const CartScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Cart'>>();
   const [cartItems, setCartItems] = useState<BookCartItem[]>([
     {
       id: 1,
@@ -56,6 +63,10 @@ const CartScreen = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  const handleCheckout = () => {
+    navigation.navigate('Payment', { total: totalAmount });
+  };
 
   return (
     <>
@@ -113,12 +124,14 @@ const CartScreen = () => {
         </View>
       </View>
 
-      <TouchableOpacity className="w-full bg-blue-500 py-4 rounded-xl items-center justify-center mb-6">
+      <TouchableOpacity 
+        className="w-full bg-blue-500 py-4 rounded-xl items-center justify-center mb-6"
+        onPress={handleCheckout}
+      >
         <Text className="text-white font-semibold text-lg">Checkout</Text>
       </TouchableOpacity>
     </ScrollView>
     </>
-
   );
 };
 
