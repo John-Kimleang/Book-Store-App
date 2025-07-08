@@ -7,6 +7,7 @@ const Assets: Record<string, ImageSourcePropType> = {
   splashIcon: require("../../assets/images/splash-icon.png"),
   adaptiveIcon: require("../../assets/images/adaptive-icon.png"),
   profile: require("../../assets/images/profile_pic.jpg"),
+  medicalLogo: require("../../assets/images/BG.png"),
   
   // Book Images
   artofWarBook: require("../../assets/images/the_art_of_war.jpg"),
