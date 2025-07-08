@@ -4,7 +4,6 @@ import React from "react";
 import AudioBookScreen from "../screens/audios/AudioBookScreen";
 import BookScreen from "../screens/books/BookScreen";
 import CartScreen from "../screens/cart/CartScreen";
-import PaymentScreen from "../screens/cart/PaymentScreen";
 import HomeScreen from "../screens/home/HomeScreen";
 import LoginScreen from "../screens/auth/LoginScreen";
 
