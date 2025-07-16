@@ -1,37 +1,41 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Asset } from 'expo-asset';
-import { Audio } from 'expo-av';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Assets from '../../components/Assets';
-
-const audioAsset = Asset.fromModule(
-  require('../../../assets/audios/art_of_war_03-04_sun_tzu_64kb.mp3')
-);
+import { useAudioPlayer } from '../../context/AudioPlayerContext';
 
 const AudioDetailScreen = () => {
   const params = useLocalSearchParams();
   const navigation = useNavigation();
-
-  const [sound, setSound] = React.useState<Audio.Sound | null>(null);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-
-  const [positionMillis, setPositionMillis] = React.useState(0);
-  const [durationMillis, setDurationMillis] = React.useState(0);
-  const [playbackRate, setPlaybackRate] = React.useState(1);
+  const { 
+    currentBook,
+    isPlaying, 
+    positionMillis, 
+    durationMillis, 
+    playbackRate,
+    pauseAudio, 
+    resumeAudio, 
+    skipForward, 
+    skipBackward, 
+    changePlaybackRate,
+    playBook 
+  } = useAudioPlayer();
 
   const book = {
-    id: params.id,
-    title: params.title,
-    author: params.author,
-    duration: params.duration,
-    category: params.category,
+    id: String(params.id),
+    title: String(params.title),
+    author: String(params.author),
+    duration: String(params.duration),
+    category: String(params.category),
     rating: parseInt(params.rating as string) || 0,
     reviews: parseInt(params.reviews as string) || 0,
     price: parseFloat(params.price as string) || 0,
-    image: getBookImage(params.id as string),
+    image: getBookImage(String(params.id)),
   };
+
+  // Check if this is the currently playing book
+  const isCurrentBook = currentBook?.id === book.id;
 
   function getBookImage(bookId: string) {
     const imageMap: { [key: string]: any } = {
@@ -57,78 +61,19 @@ const AudioDetailScreen = () => {
     });
   }, [navigation, book.title]);
 
-  async function playAudio() {
-    if (sound) {
-      await sound.playAsync();
-      setIsPlaying(true);
+  async function handlePlayPause() {
+    if (isCurrentBook) {
+      // If this is the current book, just toggle play/pause
+      if (isPlaying) {
+        await pauseAudio();
+      } else {
+        await resumeAudio();
+      }
     } else {
-      const { sound: newSound, status } = await Audio.Sound.createAsync(audioAsset);
-      setSound(newSound);
-      if ('isLoaded' in status && status.isLoaded) {
-        setDurationMillis(status.durationMillis || 0);
-      }
-      await newSound.playAsync();
-      setIsPlaying(true);
+      // If this is not the current book, start playing it
+      await playBook(book);
     }
   }
-
-  async function pauseAudio() {
-    if (sound) {
-      await sound.pauseAsync();
-      setIsPlaying(false);
-    }
-  }
-
-  async function skipForward() {
-    if (sound) {
-      const status = await sound.getStatusAsync();
-      if (status.isLoaded) {
-        await sound.setPositionAsync(status.positionMillis + 10000); 
-      }
-    }
-  }
-
-  async function skipBackward() {
-    if (sound) {
-      const status = await sound.getStatusAsync();
-      if (status.isLoaded) {
-        await sound.setPositionAsync(Math.max(status.positionMillis - 10000, 0)); 
-      }
-    }
-  }
-
-  async function changePlaybackRate(rate: number) {
-    if (sound) {
-      await sound.setRateAsync(rate, true);
-      setPlaybackRate(rate);
-    }
-  }
-
-  React.useEffect(() => {
-    let interval: any;
-
-    if (sound) {
-      interval = setInterval(async () => {
-        const status = await sound.getStatusAsync();
-        if (status.isLoaded && status.positionMillis !== undefined) {
-          setPositionMillis(status.positionMillis);
-          setDurationMillis(status.durationMillis || 0);
-        }
-      }, 500);
-    }
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [sound]);
-
-  React.useEffect(() => {
-    return () => {
-      if (sound) {
-        sound.unloadAsync();
-      }
-    };
-  }, [sound]);
 
   function formatTime(ms: number) {
     const totalSeconds = Math.floor(ms / 1000);
@@ -137,7 +82,11 @@ const AudioDetailScreen = () => {
     return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   }
 
-  const progress = durationMillis > 0 ? (positionMillis / durationMillis) * 100 : 0;
+  // Use current playback progress if this is the current book, otherwise 0
+  const currentPosition = isCurrentBook ? positionMillis : 0;
+  const currentDuration = isCurrentBook ? durationMillis : 0;
+  const progress = currentDuration > 0 ? (currentPosition / currentDuration) * 100 : 0;
+  const showPlayingState = isCurrentBook && isPlaying;
 
   return (
     <View className="flex-1 bg-blue-500">
@@ -163,20 +112,20 @@ const AudioDetailScreen = () => {
       
         {/* Time Display */}
         <View className="flex-row justify-between w-full px-2 mb-6">
-          <Text className="text-white text-xs">{formatTime(positionMillis)}</Text>
-          <Text className="text-white text-xs">{formatTime(durationMillis)}</Text>
+          <Text className="text-white text-xs">{formatTime(currentPosition)}</Text>
+          <Text className="text-white text-xs">{formatTime(currentDuration)}</Text>
         </View>
 
         {/* Controls */}
         <View className="flex-row justify-between items-center w-full px-8 mb-8">
-          <TouchableOpacity onPress={skipBackward}>
-            <Ionicons name="play-back" size={32} color="white" />
+          <TouchableOpacity onPress={skipBackward} disabled={!isCurrentBook}>
+            <Ionicons name="play-back" size={32} color={isCurrentBook ? "white" : "gray"} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={isPlaying ? pauseAudio : playAudio}>
-            <Ionicons name={isPlaying ? 'pause' : 'play'} size={48} color="white" />
+          <TouchableOpacity onPress={handlePlayPause}>
+            <Ionicons name={showPlayingState ? 'pause' : 'play'} size={48} color="white" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={skipForward}>
-            <Ionicons name="play-forward" size={32} color="white" />
+          <TouchableOpacity onPress={skipForward} disabled={!isCurrentBook}>
+            <Ionicons name="play-forward" size={32} color={isCurrentBook ? "white" : "gray"} />
           </TouchableOpacity>
         </View>
         
@@ -186,9 +135,10 @@ const AudioDetailScreen = () => {
             <TouchableOpacity
               key={rate}
               onPress={() => changePlaybackRate(rate)}
-              className={`px-4 py-2 rounded-full ${playbackRate === rate ? 'bg-gray-200' : 'bg-blue-500'}`}
+              disabled={!isCurrentBook}
+              className={`px-4 py-2 rounded-full ${playbackRate === rate && isCurrentBook ? 'bg-gray-200' : 'bg-blue-500'}`}
             >
-              <Text className={`text-sm ${playbackRate === rate ? 'text-gray-500' : 'text-white'}`}>{rate}x</Text>
+              <Text className={`text-sm ${playbackRate === rate && isCurrentBook ? 'text-gray-500' : 'text-white'}`}>{rate}x</Text>
             </TouchableOpacity>
           ))}
         </View>

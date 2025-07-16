@@ -30,7 +30,7 @@ const LoginScreen = () => {
         autoCorrect={false}
       />
       <Text className="text-bold mb-4">
-        Password <Text className="text-red-500">*</Text>i
+        Password <Text className="text-red-500">*</Text>
       </Text>
       <View className="relative">
         <TextInput
