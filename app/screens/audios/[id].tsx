@@ -16,6 +16,7 @@ const AudioDetailScreen = () => {
 
   const [sound, setSound] = React.useState<Audio.Sound | null>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
+
   const [positionMillis, setPositionMillis] = React.useState(0);
   const [durationMillis, setDurationMillis] = React.useState(0);
   const [playbackRate, setPlaybackRate] = React.useState(1);
@@ -155,7 +156,7 @@ const AudioDetailScreen = () => {
       <View className="flex-1 justify-center items-center px-6">
         <View className="w-full h-1 bg-gray-300 rounded-full mb-6 overflow-hidden">
           <View
-            className="bg-white"
+            className="h-full bg-white"
             style={{ width: `${progress}%` }}
           />
         </View>
