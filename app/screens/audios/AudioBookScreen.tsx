@@ -1,23 +1,25 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Assets from '../../components/Assets';
 import Header from "../../components/Header";
+import MiniPlayer from '../../components/MiniPlayer';
+import { useAudioPlayer } from '../../context/AudioPlayerContext';
 
 const AudioBookScreen = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const { playBook } = useAudioPlayer();
 
   const categories = ['All', 'Comic', 'Business', 'Education', 'Literature', 'Science'];
 
   const books = [
-    { id: 1, title: "The Let Them", author: "Mel Robbins", rating: 4, reviews: 250, price: 18.50, image: Assets.letThemBook, category: "Science", duration: "2:15:45" },
-    { id: 2, title: "The Art of War", author: "Sun Tzu", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature", duration: "1:30:20" },
-    { id: 3, title: "Power of Habit", author: "Albert Johnson", rating: 4, reviews: 47, price: 14.75, image: Assets.powerofHabitBook, category: "Literature", duration: "1:45:30" },
-    { id: 4, title: "Making Thing", author: "Mia George", rating: 3, reviews: 286, price: 11.99, image: Assets.makingThingHappenBook, category: "Education", duration: "3:20:15" },
-    { id: 5, title: "The Power", author: "J.K Rowling", rating: 5, reviews: 156, price: 24.99, image: Assets.powerBook, category: "Business", duration: "2:45:30" },
-    { id: 6, title: "Theory of Everything", author: "Jane Doe", rating: 4, reviews: 89, price: 9.99, image: Assets.theoryOfEverythingBook, category: "Comic", duration: "1:15:20" },
-    { id: 7, title: "One Thing", author: "Sarah Wilson", rating: 4, reviews: 234, price: 16.50, image: Assets.oneThingBook, category: "Education", duration: "4:10:25" },
+    { id: "1", title: "The Let Them", author: "Mel Robbins", rating: 4, reviews: 250, price: 18.50, image: Assets.letThemBook, category: "Science", duration: "2:15:45" },
+    { id: "2", title: "The Art of War", author: "Sun Tzu", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature", duration: "1:30:20" },
+    { id: "3", title: "Power of Habit", author: "Albert Johnson", rating: 4, reviews: 47, price: 14.75, image: Assets.powerofHabitBook, category: "Literature", duration: "1:45:30" },
+    { id: "4", title: "Making Thing", author: "Mia George", rating: 3, reviews: 286, price: 11.99, image: Assets.makingThingHappenBook, category: "Education", duration: "3:20:15" },
+    { id: "5", title: "The Power", author: "J.K Rowling", rating: 5, reviews: 156, price: 24.99, image: Assets.powerBook, category: "Business", duration: "2:45:30" },
+    { id: "6", title: "Theory of Everything", author: "Jane Doe", rating: 4, reviews: 89, price: 9.99, image: Assets.theoryOfEverythingBook, category: "Comic", duration: "1:15:20" },
+    { id: "7", title: "One Thing", author: "Sarah Wilson", rating: 4, reviews: 234, price: 16.50, image: Assets.oneThingBook, category: "Education", duration: "4:10:25" },
   ];
 
   const filteredBooks = activeTab === 'All' 
@@ -35,20 +37,8 @@ const AudioBookScreen = () => {
     ));
   };
 
-  const handleBookPress = (book: any) => {
-    router.push({
-      pathname: '/screens/audios/[id]',
-      params: {
-        id: book.id.toString(),
-        title: book.title,
-        author: book.author,
-        duration: book.duration,
-        category: book.category,
-        rating: book.rating.toString(),
-        reviews: book.reviews.toString(),
-        price: book.price.toString(),
-      }
-    });
+  const handleBookPress = async (book: any) => {
+    await playBook(book);
   };
 
   const renderBookItem = ({ item }: { item: any }) => (
@@ -132,6 +122,9 @@ const AudioBookScreen = () => {
                 keyExtractor={(item) => item.id.toString()}
             />
         </View>
+        
+        {/* Mini Player */}
+        <MiniPlayer />
     </>
   );
 };
