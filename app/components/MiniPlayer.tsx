@@ -71,7 +71,7 @@ const MiniPlayer: React.FC = () => {
       style={{
         opacity: fadeAnim,
         position: 'absolute',
-        bottom: 0,
+        bottom: 80,
         left: 16,
         right: 16,
         zIndex: 1000,

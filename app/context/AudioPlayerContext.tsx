@@ -71,7 +71,6 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
 
   const playBook = async (book: Book) => {
     try {
-      // Stop current audio if playing
       if (sound) {
         await sound.unloadAsync();
         setSound(null);

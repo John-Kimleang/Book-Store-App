@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Assets from '../../components/Assets';
 import Header from "../../components/Header";
-import MiniPlayer from '../../components/MiniPlayer';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 
 const AudioBookScreen = () => {
@@ -116,15 +115,12 @@ const AudioBookScreen = () => {
                 renderItem={renderBookItem}
                 contentContainerStyle={{
                     paddingTop: 16,
-                    paddingBottom: 100,
+                    paddingBottom: 120,
                 }}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(item) => item.id.toString()}
             />
         </View>
-        
-        {/* Mini Player */}
-        <MiniPlayer />
     </>
   );
 };
