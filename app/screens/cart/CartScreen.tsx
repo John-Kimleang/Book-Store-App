@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import Assets from '@/app/components/Assets';
+import Header from '@/app/components/Header';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Header from '@/app/components/Header';
+import React, { useState } from 'react';
+import {
+    Image,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 
 type RootStackParamList = {
   Cart: undefined;
@@ -71,7 +71,7 @@ const CartScreen = () => {
   return (
     <>
     <Header/>
-    <ScrollView className="flex-1 bg-gray-50 px-4" showsVerticalScrollIndicator={false}>
+    <ScrollView className="flex-1 bg-gray-50 px-4" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
       <View className="mb-6 pt-4">
         <Text className="text-lg font-semibold text-gray-800">Your Book Cart</Text>
       </View>

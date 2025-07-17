@@ -103,7 +103,7 @@ const BookScreen = () => {
                 numColumns={2}
                 contentContainerStyle={{
                 padding: 16,
-                paddingBottom: 100,
+                paddingBottom: 120, 
                 }}
                 columnWrapperStyle={{
                 justifyContent: 'space-between',
