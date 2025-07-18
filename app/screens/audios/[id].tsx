@@ -130,7 +130,7 @@ const AudioDetailScreen = () => {
         </View>
         
         {/* Playback Speed */}
-        <View className="flex-row justify-center items-center w-full px-8 mt-4">
+        {/* <View className="flex-row justify-center items-center w-full px-8 mt-4">
           {[0.9, 1, 1.5, 2].map((rate) => (
             <TouchableOpacity
               key={rate}
@@ -141,7 +141,7 @@ const AudioDetailScreen = () => {
               <Text className={`text-sm ${playbackRate === rate && isCurrentBook ? 'text-gray-500' : 'text-white'}`}>{rate}x</Text>
             </TouchableOpacity>
           ))}
-        </View>
+        </View> */}
 
       </View>
     </View>
