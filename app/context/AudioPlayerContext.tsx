@@ -37,9 +37,10 @@ interface AudioPlayerProviderProps {
   children: ReactNode;
 }
 
-const audioAsset = Asset.fromModule(
-  require('../../assets/audios/art_of_war_03-04_sun_tzu_64kb.mp3')
-);
+const audioAssets: { [key: string]: Asset } = {
+  '1': Asset.fromModule(require('../../assets/audios/sevenwoods_01_yeats_64kb.mp3')), 
+  '2': Asset.fromModule(require('../../assets/audios/art_of_war_03-04_sun_tzu_64kb.mp3')),
+};
 
 export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ children }) => {
   const [currentBook, setCurrentBook] = useState<Book | null>(null);
@@ -71,10 +72,14 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
 
   const playBook = async (book: Book) => {
     try {
+      // Stop current audio if playing
       if (sound) {
         await sound.unloadAsync();
         setSound(null);
       }
+
+      // Get the correct audio asset for this book
+      const audioAsset = audioAssets[book.id] || audioAssets['2']; // Default to Art of War if book ID not found
 
       // Create new sound
       const { sound: newSound, status } = await Audio.Sound.createAsync(audioAsset);
