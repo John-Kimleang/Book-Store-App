@@ -1,5 +1,5 @@
 import { Asset } from 'expo-asset';
-import { Audio } from 'expo-av';
+import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from 'expo-av';
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 interface Book {
@@ -51,6 +51,30 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
   const [durationMillis, setDurationMillis] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1);
 
+  // Configure audio session for background playback
+  React.useEffect(() => {
+    const configureAudioSession = async () => {
+      try {
+        // Set audio mode for background playback
+        await Audio.setAudioModeAsync({
+          allowsRecordingIOS: false,
+          staysActiveInBackground: true, // Key: enables background audio
+          interruptionModeIOS: InterruptionModeIOS.DoNotMix,
+          playsInSilentModeIOS: true, // Plays even when phone is in silent mode
+          shouldDuckAndroid: true,
+          interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
+          playThroughEarpieceAndroid: false,
+        });
+        
+        console.log('Audio session configured for background playback');
+      } catch (error) {
+        console.error('Error configuring audio session:', error);
+      }
+    };
+
+    configureAudioSession();
+  }, []);
+
   // Update position every 500ms when playing
   React.useEffect(() => {
     let interval: any;
@@ -81,16 +105,27 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
       // Get the correct audio asset for this book
       const audioAsset = audioAssets[book.id] || audioAssets['2']; // Default to Art of War if book ID not found
 
-      // Create new sound
-      const { sound: newSound, status } = await Audio.Sound.createAsync(audioAsset);
+      // Create new sound with background audio enabled
+      const { sound: newSound, status } = await Audio.Sound.createAsync(
+        audioAsset,
+        {
+          shouldPlay: true,
+          isLooping: false,
+        }
+      );
+      
+      // Enable background audio notifications/control center
+      await newSound.setStatusAsync({
+        shouldPlay: true,
+        isLooping: false,
+      });
+      
       setSound(newSound);
       
       // Set initial duration
       if ('isLoaded' in status && status.isLoaded) {
         setDurationMillis(status.durationMillis || 0);
       }
-      
-      await newSound.playAsync();
       
       setCurrentBook(book);
       setIsPlaying(true);
@@ -156,6 +191,15 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
     setDurationMillis(0);
     setPlaybackRate(1);
   };
+
+  // Cleanup when component unmounts
+  React.useEffect(() => {
+    return () => {
+      if (sound) {
+        sound.unloadAsync();
+      }
+    };
+  }, [sound]);
 
   const value = {
     currentBook,

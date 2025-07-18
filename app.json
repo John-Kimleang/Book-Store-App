@@ -10,7 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.rnativeapp"
+      "bundleIdentifier": "com.anonymous.rnativeapp",
+      "infoPlist": {
+        "UIBackgroundModes": ["audio"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +21,10 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.rnativeapp"
+      "package": "com.anonymous.rnativeapp",
+      "permissions": [
+        "WAKE_LOCK"
+      ]
     },
     "web": {
       "bundler": "metro",
