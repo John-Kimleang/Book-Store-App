@@ -81,7 +81,6 @@ const AudioDetailScreen = () => {
     return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   }
 
-  // Use current playback progress if this is the current book, otherwise 0
   const currentPosition = isCurrentBook ? positionMillis : 0;
   const currentDuration = isCurrentBook ? durationMillis : 0;
   const progress = currentDuration > 0 ? (currentPosition / currentDuration) * 100 : 0;

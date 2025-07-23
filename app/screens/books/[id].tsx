@@ -31,7 +31,7 @@ type Book = {
 const bookData: Record<number, Book> = {
   1: {
     id: 1,
-    title: "The Let Them",
+    title: "The Let Them Theory",
     subtitle: "Empowering Yourself to Say No",
     author: "Mel Robbins",
     authorImage: Assets.authorRobert,
@@ -67,7 +67,7 @@ const bookData: Record<number, Book> = {
   },
   4: {
     id: 4,
-    title: "Making Thing",
+    title: "Making Thing Happen for you",
     subtitle: "Happen: Mastering Project Management",
     author: "Mia George",
     authorImage: Assets.authorRobert,
@@ -103,7 +103,7 @@ const bookData: Record<number, Book> = {
   },
   7: {
     id: 7,
-    title: "One Thing",
+    title: "One Thing That Matters",
     subtitle: "The Surprisingly Simple Truth Behind Extraordinary Results",
     author: "Sarah Wilson",
     authorImage: Assets.authorRobert,
@@ -135,14 +135,13 @@ export default function BookDetail() {
     setIsBookmarked((prev) => !prev);
   };
 
-  // Back button and title on header
+  // Back button on header
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: book.title,
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.goBack()} >
           <Ionicons name="chevron-back" size={20} />
-          {/* <Text >Back</Text> */}
         </TouchableOpacity>
       ),
     });
@@ -155,7 +154,7 @@ export default function BookDetail() {
         <View className="items-center bg-white py-10">
           <Image 
             source={book.coverImage} 
-            className="w-48 h-64 rounded-xl shadow-lg" 
+            className="w-60 h-96 rounded-xl shadow-lg" 
           />
         </View>
 
@@ -163,9 +162,9 @@ export default function BookDetail() {
           <View className="flex-row items-center mb-5">
             <Image 
               source={book.authorImage} 
-              className="w-10 h-10 rounded-full mr-3" 
+              className="w-20 h-20 rounded-full mr-3" 
             />
-            <Text className="text-base font-semibold text-gray-700">{book.author}</Text>
+            <Text className="text-xl font-semibold text-gray-700">{book.author}</Text>
           </View>
           
           <Text className="text-2xl font-bold text-gray-800 mb-2 leading-8">{book.title}</Text> 
