@@ -51,16 +51,14 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
   const [durationMillis, setDurationMillis] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1);
 
-  // Configure audio session for background playback
   React.useEffect(() => {
     const configureAudioSession = async () => {
       try {
-        // Set audio mode for background playback
         await Audio.setAudioModeAsync({
           allowsRecordingIOS: false,
-          staysActiveInBackground: true, // Key: enables background audio
+          staysActiveInBackground: true, 
           interruptionModeIOS: InterruptionModeIOS.DoNotMix,
-          playsInSilentModeIOS: true, // Plays even when phone is in silent mode
+          playsInSilentModeIOS: true, 
           shouldDuckAndroid: true,
           interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
           playThroughEarpieceAndroid: false,
@@ -96,16 +94,13 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
 
   const playBook = async (book: Book) => {
     try {
-      // Stop current audio if playing
       if (sound) {
         await sound.unloadAsync();
         setSound(null);
       }
 
-      // Get the correct audio asset for this book
-      const audioAsset = audioAssets[book.id] || audioAssets['2']; // Default to Art of War if book ID not found
+      const audioAsset = audioAssets[book.id] || audioAssets['1'];
 
-      // Create new sound with background audio enabled
       const { sound: newSound, status } = await Audio.Sound.createAsync(
         audioAsset,
         {
@@ -114,7 +109,6 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
         }
       );
       
-      // Enable background audio notifications/control center
       await newSound.setStatusAsync({
         shouldPlay: true,
         isLooping: false,
