@@ -8,9 +8,7 @@ import { useAudioPlayer } from '../../context/AudioPlayerContext';
 const AudioBookScreen = () => {
   const [activeTab, setActiveTab] = useState('All');
   const { playBook } = useAudioPlayer();
-
   const categories = ['All', 'Comic', 'Business', 'Education', 'Literature', 'Science'];
-
   const books = [
     { id: "1", title: "The Let Them", author: "Mel Robbins", rating: 4, reviews: 250, price: 18.50, image: Assets.letThemBook, category: "Science", duration: "2:15:45" },
     { id: "2", title: "The Art of War", author: "Sun Tzu", rating: 4, reviews: 93, price: 12.99, image: Assets.artofWarBook, category: "Literature", duration: "1:30:20" },

@@ -34,7 +34,7 @@ const AudioDetailScreen = () => {
     image: getBookImage(String(params.id)),
   };
 
-  // Check if this is the currently playing book
+  // Check current playing book
   const isCurrentBook = currentBook?.id === book.id;
 
   function getBookImage(bookId: string) {
@@ -63,14 +63,13 @@ const AudioDetailScreen = () => {
 
   async function handlePlayPause() {
     if (isCurrentBook) {
-      // If this is the current book, just toggle play/pause
+      // Play/pause
       if (isPlaying) {
         await pauseAudio();
       } else {
         await resumeAudio();
       }
     } else {
-      // If this is not the current book, start playing it
       await playBook(book);
     }
   }
@@ -93,7 +92,7 @@ const AudioDetailScreen = () => {
       <View className="items-center mt-20">
         <Image
           source={book.image}
-          className="w-60 h-80 rounded-lg shadow-lg"
+          className="w-60 h-96 rounded-lg shadow-lg"
           resizeMode="cover"
         />
         <Text className="text-white text-2xl font-bold mt-4" numberOfLines={2}>
@@ -111,7 +110,7 @@ const AudioDetailScreen = () => {
         </View>
       
         {/* Time Display */}
-        <View className="flex-row justify-between w-full px-2 mb-6">
+        <View className="flex-row justify-between w-full px-2">
           <Text className="text-white text-xs">{formatTime(currentPosition)}</Text>
           <Text className="text-white text-xs">{formatTime(currentDuration)}</Text>
         </View>
@@ -142,7 +141,6 @@ const AudioDetailScreen = () => {
             </TouchableOpacity>
           ))}
         </View> */}
-
       </View>
     </View>
   );
