@@ -74,6 +74,7 @@ const LoginScreen = () => {
         Register New Account
       </Text>
     </View>
+    
   );
 }
 export default LoginScreen

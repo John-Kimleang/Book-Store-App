@@ -164,7 +164,7 @@ export default function BookDetail() {
               source={book.authorImage} 
               className="w-20 h-20 rounded-full mr-3" 
             />
-            <Text className="text-xl font-semibold text-gray-700">{book.author}</Text>
+            <Text className="text-2xl font-semibold text-gray-700">{book.author}</Text>
           </View>
           
           <Text className="text-2xl font-bold text-gray-800 mb-2 leading-8">{book.title}</Text> 
